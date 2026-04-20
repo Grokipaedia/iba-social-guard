@@ -1,0 +1,64 @@
+# default.iba.yaml
+# IBA Intent Bound Authorization — Platform-Agnostic Base Configuration
+# Patent GB2603013.0 (Pending) · intentbound.com
+#
+# Use this as the base cert for any social platform not covered by
+# a dedicated config. Copy and extend for new platforms.
+
+intent:
+  description: >
+    Authorized social media engagement within declared scope.
+    Authorized content only. No spam. No impersonation.
+    No coordinated inauthentic behavior. No platform manipulation.
+    Human-authorized actions only.
+
+principal:
+  identity_reference: "SOCIAL-ACCOUNT-XXXX"
+  human_authorization: "HUMAN-AUTH-2026-04-20"
+  account_type: "individual"
+
+scope:
+  - post_authorized_content
+  - reply_within_scope
+  - share_approved_content
+  - follow_account
+  - like_content
+  - report_violation
+
+denied:
+  - spam_post
+  - impersonate_identity
+  - fake_engagement
+  - mass_automated_action
+  - coordinated_inauthentic_behavior
+  - platform_manipulation
+  - scrape_user_data
+  - undisclosed_ai_content
+  - hate_speech
+  - disinformation
+
+default_posture: DENY_ALL
+
+kill_threshold: >
+  coordinated_inauthentic_behavior |
+  identity_fraud |
+  platform_manipulation_attack |
+  mass_harassment_campaign |
+  disinformation_campaign
+
+rate_limits:
+  max_posts_per_hour: 5
+  max_replies_per_hour: 15
+  max_follows_per_day: 20
+
+temporal_scope:
+  hard_expiry: "2026-12-31"
+
+audit:
+  chain: witnessbound
+  log_every_action: true
+  immutable: true
+
+regulatory:
+  eu_dsa: compliant
+  eu_ai_act_article_52: compliant
