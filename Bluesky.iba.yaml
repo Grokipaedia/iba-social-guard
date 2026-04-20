@@ -1,0 +1,60 @@
+# bluesky.iba.yaml
+# IBA Intent Bound Authorization — Bluesky Platform Configuration
+# Patent GB2603013.0 (Pending) · intentbound.com
+
+intent:
+  description: >
+    Authorized engagement on Bluesky and AT Protocol federated instances.
+    Posts, replies, and shares within declared federation scope only.
+    No cross-posting without explicit cert. No impersonation of DID identities.
+
+principal:
+  identity_reference: "BSKY-DID-XXXX"
+  human_authorization: "HUMAN-AUTH-2026-04-20"
+  account_type: "individual"
+  federation_scope: ["bsky.social", "declared-instance.bsky.social"]
+
+scope:
+  - post_to_personal_feed
+  - reply_to_federated_thread
+  - share_within_declared_instances
+  - follow_account
+  - like_post
+  - repost_content
+  - governance_discussion
+
+denied:
+  - cross_post_without_cert
+  - spam_federation
+  - impersonate_did_identity
+  - mass_follow_bot
+  - automated_mass_reply
+  - scrape_federation_data
+  - fake_moderation_action
+
+default_posture: DENY_ALL
+
+kill_threshold: >
+  impersonate_identity |
+  spam_federation |
+  coordinated_inauthentic_behavior |
+  did_identity_fraud |
+  federation_attack
+
+rate_limits:
+  max_posts_per_hour: 5
+  max_replies_per_hour: 15
+  max_follows_per_day: 20
+
+temporal_scope:
+  hard_expiry: "2026-12-31"
+
+audit:
+  chain: witnessbound
+  log_every_action: true
+  immutable: true
+
+regulatory:
+  eu_dsa: compliant
+  eu_ai_act_article_52: compliant
+  at_protocol_terms: enforced
