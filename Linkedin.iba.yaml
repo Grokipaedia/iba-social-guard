@@ -1,0 +1,76 @@
+# linkedin.iba.yaml
+# IBA Intent Bound Authorization — LinkedIn Platform Configuration
+# Patent GB2603013.0 (Pending) · UK IPO · Filed February 5, 2026
+# WIPO DAS Confirmed April 15, 2026 · Access Code C9A6
+# IETF draft-williams-intent-token-00 · intentbound.com
+#
+# Regulatory: EU Digital Services Act (DSA) · EU AI Act Article 52 ·
+# GDPR (professional data processing) · LinkedIn Terms of Service
+
+intent:
+  description: >
+    Professional engagement on LinkedIn within declared industry scope.
+    Original posts, comments, and shares on AI governance, BCI, IoMT,
+    and patent matters. No spam. No fake endorsements. No bulk outreach.
+    No impersonation. No AI-generated content without disclosure.
+
+principal:
+  identity_reference: "LI-PROFILE-XXXX"
+  human_authorization: "HUMAN-AUTH-2026-04-20"
+  account_type: "individual_professional"
+  disclosure: "AI-assisted posting — human reviewed and authorized"
+
+scope:
+  - post_professional_update
+  - comment_on_article
+  - share_industry_news
+  - connect_with_researcher
+  - send_targeted_message
+  - endorse_verified_skill
+  - publish_article
+  - reply_to_comment
+  - patent_announcement_post
+  - governance_commentary
+
+denied:
+  - spam_message_bulk
+  - fake_endorsement
+  - fake_recommendation
+  - mass_connection_request
+  - scrape_profile_data
+  - impersonate_executive
+  - buy_connections
+  - automated_mass_like
+  - undisclosed_ai_content
+  - competitor_defamation
+
+default_posture: DENY_ALL
+
+kill_threshold: >
+  coordinated_inauthentic_behavior |
+  mass_connection_attack |
+  identity_fraud |
+  executive_impersonation |
+  platform_scraping_attack |
+  disinformation_professional
+
+rate_limits:
+  max_posts_per_hour: 3
+  max_replies_per_hour: 10
+  max_connection_requests_per_day: 15
+  max_messages_per_day: 10
+
+temporal_scope:
+  hard_expiry: "2026-12-31"
+
+audit:
+  chain: witnessbound
+  log_every_action: true
+  human_review_interval_days: 7
+  immutable: true
+
+regulatory:
+  eu_dsa: compliant
+  eu_ai_act_article_52: compliant
+  gdpr_article_6: compliant
+  linkedin_terms_of_service: enforced
