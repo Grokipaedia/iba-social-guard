@@ -1,0 +1,78 @@
+# x.iba.yaml
+# IBA Intent Bound Authorization — X / Twitter Platform Configuration
+# Patent GB2603013.0 (Pending) · UK IPO · Filed February 5, 2026
+# WIPO DAS Confirmed April 15, 2026 · Access Code C9A6
+# IETF draft-williams-intent-token-00 · intentbound.com
+#
+# Regulatory: EU Digital Services Act (DSA) · EU AI Act Article 52
+# (transparency obligations for AI-generated content) ·
+# UK Online Safety Act · X Platform Terms of Service enforcement layer
+
+intent:
+  description: >
+    Authorized research and professional engagement on X.
+    Original posts, replies, and shares within declared topic scope only.
+    No spam. No impersonation. No coordinated inauthentic behavior.
+    No manipulation of feeds, trends, or engagement metrics.
+
+principal:
+  identity_reference: "X-ACCOUNT-XXXX"
+  human_authorization: "HUMAN-AUTH-2026-04-20"
+  account_type: "individual_researcher"
+  verified: false
+
+scope:
+  - post_original_content
+  - reply_to_question
+  - share_article
+  - quote_tweet
+  - follow_relevant_account
+  - like_content
+  - research_engagement
+  - governance_discussion
+  - patent_update_post
+  - technical_commentary
+
+denied:
+  - spam_post
+  - mass_reply
+  - impersonate_account
+  - fake_engagement
+  - buy_followers
+  - automated_mass_follow
+  - scrape_dms
+  - feed_manipulation
+  - trend_manipulation
+  - political_ad_undisclosed
+  - coordinated_inauthentic_behavior
+
+default_posture: DENY_ALL
+
+kill_threshold: >
+  coordinated_inauthentic_behavior |
+  impersonate_verified |
+  mass_harassment |
+  automated_bot_farm |
+  disinformation_campaign |
+  platform_manipulation_attack
+
+rate_limits:
+  max_posts_per_hour: 5
+  max_replies_per_hour: 15
+  max_follows_per_day: 20
+  max_likes_per_hour: 30
+
+temporal_scope:
+  hard_expiry: "2026-12-31"
+
+audit:
+  chain: witnessbound
+  log_every_action: true
+  human_review_interval_days: 7
+  immutable: true
+
+regulatory:
+  eu_dsa: compliant
+  eu_ai_act_article_52: compliant
+  uk_online_safety_act: compliant
+  x_terms_of_service: enforced
