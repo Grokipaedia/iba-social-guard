@@ -1,5 +1,1 @@
-
-### 2. `requirements.txt`
-
-```txt
-cryptography
+pyyaml>=6.0
