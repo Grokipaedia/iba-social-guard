@@ -1,0 +1,67 @@
+# reddit.iba.yaml
+# IBA Intent Bound Authorization — Reddit Platform Configuration
+# Patent GB2603013.0 (Pending) · intentbound.com
+
+intent:
+  description: >
+    Community engagement on Reddit within declared subreddit scope.
+    Original posts and comments only in authorized communities.
+    No vote manipulation. No brigading. No subreddit raiding.
+    No coordinated downvote attacks. No astroturfing.
+
+principal:
+  identity_reference: "REDDIT-ACCOUNT-XXXX"
+  human_authorization: "HUMAN-AUTH-2026-04-20"
+  account_type: "individual"
+  declared_subreddits:
+    - MachineLearning
+    - aisafety
+    - netsec
+    - programming
+    - artificial
+
+scope:
+  - post_in_declared_subreddit
+  - comment_on_thread
+  - reply_to_comment
+  - upvote_quality_content
+  - report_rule_violation
+  - cross_post_declared_subreddit
+
+denied:
+  - post_outside_declared_subreddit
+  - vote_manipulation
+  - coordinated_downvote
+  - astroturfing
+  - fake_account_amplification
+  - subreddit_raiding
+  - ban_evasion
+  - scrape_user_data
+  - impersonate_moderator
+
+default_posture: DENY_ALL
+
+kill_threshold: >
+  brigading |
+  coordinated_inauthentic_behavior |
+  vote_manipulation_campaign |
+  subreddit_raiding |
+  ban_evasion_coordinated |
+  moderator_impersonation
+
+rate_limits:
+  max_posts_per_hour: 3
+  max_replies_per_hour: 10
+  max_votes_per_hour: 50
+
+temporal_scope:
+  hard_expiry: "2026-12-31"
+
+audit:
+  chain: witnessbound
+  log_every_action: true
+  immutable: true
+
+regulatory:
+  eu_dsa: compliant
+  reddit_content_policy: enforced
