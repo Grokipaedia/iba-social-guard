@@ -1,0 +1,67 @@
+# youtube.iba.yaml
+# IBA Intent Bound Authorization — YouTube Platform Configuration
+# Patent GB2603013.0 (Pending) · intentbound.com
+
+intent:
+  description: >
+    Authorized engagement on YouTube within declared channel and topic scope.
+    Comments, replies, and community posts only on declared channels.
+    No hate speech. No coordinated dislike attacks. No spam comments.
+    No impersonation of creators. No artificial view inflation.
+
+principal:
+  identity_reference: "YT-CHANNEL-XXXX"
+  human_authorization: "HUMAN-AUTH-2026-04-20"
+  account_type: "individual"
+  declared_channels:
+    - own_channel
+    - declared_partner_channels
+
+scope:
+  - comment_on_video
+  - reply_to_comment
+  - post_community_update
+  - like_video
+  - subscribe_to_channel
+  - share_video
+  - report_violation
+
+denied:
+  - hate_speech_comment
+  - spam_comment_mass
+  - coordinated_dislike_attack
+  - impersonate_creator
+  - artificial_view_inflation
+  - artificial_subscriber_purchase
+  - scrape_comment_data
+  - undisclosed_paid_promotion
+  - copyright_circumvention
+
+default_posture: DENY_ALL
+
+kill_threshold: >
+  coordinated_inauthentic_behavior |
+  hate_speech_campaign |
+  creator_impersonation |
+  dislike_attack_coordinated |
+  artificial_inflation_campaign |
+  child_safety_violation
+
+rate_limits:
+  max_posts_per_hour: 5
+  max_replies_per_hour: 15
+  max_likes_per_hour: 30
+
+temporal_scope:
+  hard_expiry: "2026-12-31"
+
+audit:
+  chain: witnessbound
+  log_every_action: true
+  immutable: true
+
+regulatory:
+  eu_dsa: compliant
+  eu_ai_act_article_52: compliant
+  youtube_terms_of_service: enforced
+  coppa: compliant
